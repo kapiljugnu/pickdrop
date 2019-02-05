@@ -2,31 +2,27 @@ import React, { Component } from 'react';
 import Map from './Map';
 import LocationInput from './Location/Input';
 import './App.css';
-import API from './Api';
+import { getPath } from './Api/action';
 
 export class App extends Component {
   state = {
-    pick: '',
-    drop: '',
+    path: []
   }
 
   onLocationSubmit = (pick, drop) => {
-    this.setState({ pick, drop })
+    const transformPath = (item) => ({ lat: item[0], lng: item[1] })
+    getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path: path.map(transformPath) }))
   }
 
   render() {
-    const { pick, drop } = this.state;
+    const { path } = this.state;
     return (
       <div className="container">
         <div className="form">
           <LocationInput onSubmit={this.onLocationSubmit} />
         </div>
         <div className="map">
-          <API pickLocation={pick} dropLocation={drop}>
-            {
-              (path) => <Map path={path} />
-            }
-          </API>
+          <Map path={path} />
         </div>
       </div>
     );

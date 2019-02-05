@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should match the snapshot 1`] = `
+<form>
+  <label>
+    Starting Location
+  </label>
+  <input
+    id="pick"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <label>
+    Drop-off point
+  </label>
+  <input
+    id="drop"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <input
+    onClick={[Function]}
+    type="submit"
+  />
+  <input
+    onClick={[Function]}
+    type="button"
+    value="Reset"
+  />
+</form>
+`;

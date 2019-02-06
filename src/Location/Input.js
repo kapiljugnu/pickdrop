@@ -43,9 +43,11 @@ class Input extends React.Component {
     render() {
         return (
             <form>
+                <label htmlFor="pick">Pickup Location</label>
                 <StandaloneSearchBox ref={this.pickSearchBoxRef} onPlacesChanged={this.onPickChange}>
                     <input type="text" id="pick" ref={this.pickInputRef} placeholder="Pickup Location"></input>
                 </StandaloneSearchBox>
+                <label htmlFor="drop">Where to?</label>
                 <StandaloneSearchBox ref={this.dropSearchBoxRef} onPlacesChanged={this.onDropChange}>
                     <input type="text" id="drop" ref={this.dropInputRef} placeholder="Where to?"></input>
                 </StandaloneSearchBox>

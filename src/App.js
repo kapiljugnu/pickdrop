@@ -9,7 +9,9 @@ export class App extends Component {
   state = { path: [] }
 
   onLocationSubmit = (pick, drop) => {
-    getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path }))
+    if (pick && drop) {
+      getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path }));
+    }
   }
 
   render() {

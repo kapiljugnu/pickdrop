@@ -28,7 +28,7 @@ class Direction extends React.Component {
         const start = this.props.path[0];
         const end = this.props.path[1];
         const waypoints = this.props.path.slice(1, -1).map((current) =>
-            ({ location: getCoordinates(current), stopover: true }));
+            ({ location: getCoordinates(current) }));
         DirectionsService.route({
             origin: getCoordinates(start),
             destination: getCoordinates(end),

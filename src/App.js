@@ -15,14 +15,18 @@ export class App extends Component {
   }
 
   render() {
+    const googleUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API}&v=3.exp&libraries=geometry,drawing,places`;
     return (
       <div className="container">
         <div className="form">
-          <LocationInput onSubmit={this.onLocationSubmit} />
+          <LocationInput
+            googleMapURL={googleUrl}
+            loadingElement={<div style={{ height: `100%` }} />}
+            onSubmit={this.onLocationSubmit} />
         </div>
         <Map
           path={this.state.path}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API}&v=3.exp&libraries=geometry,drawing,places`}
+          googleMapURL={googleUrl}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div className="map" />}
           mapElement={<div style={{ height: `100%` }} />}

@@ -6,8 +6,31 @@ form label, form input{
 form input[type="text"]{
     margin-bottom: 30px;
     width: 80%;
+    box-sizing:  border-box;
+    border: 1px Solid transparent;
+    width: 240px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    outline: none;
+    text-overflow: ellipsis;
 }
 
 form input[type="submit"], form input[type="button"]{
     display: inline;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
+
+form input[type="button"] {
+    background-color: #555555;
+}
+

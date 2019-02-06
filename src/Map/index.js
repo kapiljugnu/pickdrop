@@ -1,40 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Map, GoogleApiWrapper, Marker, InfoWindow, Polyline } from 'google-maps-react';
+import PropsTypes from 'prop-types';
+import { withScriptjs, withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
+import Direction from './Direction';
 
 export class Container extends React.Component {
-
     static propTypes = {
-        path: PropTypes.array,
+        path: PropsTypes.array,
     }
 
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {}
-    }
-    
     render() {
-        if (!this.props.loaded) {
-            return <div>Loading...</div>
-        }
         return (
-            <Map
-                google={this.props.google}
-                // zoom={14}
-                // style={style}
-                initialCenter={{ lat: 36.05298766, lng: -112.0837566 }}
-            >
+            <Direction path={this.props.path}>
                 {
-                    this.props.path.map((path) => <Marker
-                        position={path}
-                    />)
+                    (directions) => <GoogleMap
+                        defaultZoom={8}
+                        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+                    >
+                        {directions && <DirectionsRenderer directions={directions} />}
+                    </GoogleMap>
                 }
-            </Map>
+            </Direction>
+
         )
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: process.env.REACT_APP_GOOGLE_API
-})(Container);
+export default withScriptjs(withGoogleMap(Container));

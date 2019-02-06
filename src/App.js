@@ -5,25 +5,26 @@ import './App.css';
 import { getPath } from './Api/action';
 
 export class App extends Component {
-  state = {
-    path: []
-  }
+
+  state = { path: [] }
 
   onLocationSubmit = (pick, drop) => {
-    const transformPath = (item) => ({ lat: item[0], lng: item[1] })
-    getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path: path.map(transformPath) }))
+    getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path }))
   }
 
   render() {
-    const { path } = this.state;
     return (
       <div className="container">
         <div className="form">
           <LocationInput onSubmit={this.onLocationSubmit} />
         </div>
-        <div className="map">
-          <Map path={path} />
-        </div>
+        <Map
+          path={this.state.path}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API}&v=3.exp&libraries=geometry,drawing,places`}
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div className="map" />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
       </div>
     );
   }

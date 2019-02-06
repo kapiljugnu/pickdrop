@@ -23,13 +23,16 @@ class Direction extends React.Component {
     }
 
     getDirections() {
+        const getCoordinates = (path) => new google.maps.LatLng(Number(path[0]), Number(path[1]))
         const DirectionsService = new google.maps.DirectionsService();
         const start = this.props.path[0];
         const end = this.props.path[1];
+        const waypoints = this.props.path.slice(1, -1).map((current) =>
+            ({ location: getCoordinates(current), stopover: true }));
         DirectionsService.route({
-            origin: new google.maps.LatLng(Number(start[0]), Number(start[1])),
-            destination: new google.maps.LatLng(Number(end[0]), Number(end[1])),
-            // waypoints:[{location:}],
+            origin: getCoordinates(start),
+            destination: getCoordinates(end),
+            waypoints,
             travelMode: google.maps.TravelMode.DRIVING,
         }, (result, status) => {
             if (status === google.maps.DirectionsStatus.OK) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
-import { withScriptjs, withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
+import { withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
 import Direction from './Direction';
 
 export class Container extends React.Component {

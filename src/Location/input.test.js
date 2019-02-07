@@ -14,10 +14,6 @@ describe('Input', () => {
     const LOCATION_PICK = 'location pick';
     const LOCATION_DROP = 'location drop';
 
-    beforeAll(() => {
-        global.google = { maps: { places: { SearchBox: class { } }, event: { addListener: jest.fn(), removeListener: jest.fn() } } };
-    });
-
     it('should match the snapshot', () => {
         const inputTree = renderer.create(<Input onSubmit={onSubmit} />).toJSON();
         expect(inputTree).toMatchSnapshot();

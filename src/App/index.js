@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withScriptjs } from 'react-google-maps';
-import Map from './Map';
-import LocationInput from './Location/Input';
-import './App.css';
-import { getPath } from './Api/action';
+import Map from '../Map';
+import LocationInput from '../Location/Input';
+import './index.css';
+import { getPath } from '../Api/action';
 
 export class App extends Component {
 

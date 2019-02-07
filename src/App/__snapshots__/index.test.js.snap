@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<withScriptjs(App)
+  googleMapURL="googleMapURL"
+  loadingElement={
+    <div
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    />
+  }
+>
+  <App>
+    <div
+      className="container"
+    >
+      <div
+        className="form"
+      >
+        <Input
+          onSubmit={[Function]}
+        >
+          <form>
+            <label
+              htmlFor="pick"
+            >
+              Pickup Location
+            </label>
+            <StandaloneSearchBox
+              onPlacesChanged={[Function]}
+            >
+              <input
+                id="pick"
+                placeholder="Pickup Location"
+                type="text"
+              />
+            </StandaloneSearchBox>
+            <label
+              htmlFor="drop"
+            >
+              Where to?
+            </label>
+            <StandaloneSearchBox
+              onPlacesChanged={[Function]}
+            >
+              <input
+                id="drop"
+                placeholder="Where to?"
+                type="text"
+              />
+            </StandaloneSearchBox>
+            <input
+              onClick={[Function]}
+              type="submit"
+            />
+            <input
+              onClick={[Function]}
+              type="button"
+              value="Reset"
+            />
+          </form>
+        </Input>
+      </div>
+      <withGoogleMap(Container)
+        containerElement={
+          <div
+            className="map"
+          />
+        }
+        mapElement={
+          <div
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+        }
+        path={Array []}
+      >
+        <div
+          className="map"
+        >
+          <div
+            style={
+              Object {
+                "height": "100%",
+              }
+            }
+          />
+          <div />
+        </div>
+      </withGoogleMap(Container)>
+    </div>
+  </App>
+</withScriptjs(App)>
+`;

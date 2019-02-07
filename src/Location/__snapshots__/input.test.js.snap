@@ -2,23 +2,25 @@
 
 exports[`Input should match the snapshot 1`] = `
 <form>
-  <label>
-    Starting Location
+  <label
+    htmlFor="pick"
+  >
+    Pickup Location
   </label>
   <input
     id="pick"
-    onChange={[Function]}
+    placeholder="Pickup Location"
     type="text"
-    value=""
   />
-  <label>
-    Drop-off point
+  <label
+    htmlFor="drop"
+  >
+    Where to?
   </label>
   <input
     id="drop"
-    onChange={[Function]}
+    placeholder="Where to?"
     type="text"
-    value=""
   />
   <input
     onClick={[Function]}

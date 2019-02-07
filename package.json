@@ -40,5 +40,8 @@
       "prettier --single-quote --write",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "enzyme-to-json": "^3.3.5"
   }
 }

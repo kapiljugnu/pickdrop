@@ -1,6 +1,6 @@
 
 # PickDrop
-PickDrop is mapping the route for the user by asking user to input pick and drop location.
+PickDrop can be use to find the route between the origin and destination. The app ask the user to submit the origin point and destination point and using the google map the route is plotted from origin to destination.
 
 ## Configuration
 

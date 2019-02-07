@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withScriptjs } from 'react-google-maps';
 import Map from './Map';
 import LocationInput from './Location/Input';
 import './App.css';
@@ -15,19 +16,14 @@ export class App extends Component {
   }
 
   render() {
-    const googleUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API}&v=3.exp&libraries=geometry,drawing,places`;
     return (
       <div className="container">
         <div className="form">
           <LocationInput
-            googleMapURL={googleUrl}
-            loadingElement={<div style={{ height: `100%` }} />}
             onSubmit={this.onLocationSubmit} />
         </div>
         <Map
           path={this.state.path}
-          googleMapURL={googleUrl}
-          loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div className="map" />}
           mapElement={<div style={{ height: `100%` }} />}
         />
@@ -36,4 +32,4 @@ export class App extends Component {
   }
 }
 
-export default App;
+export default withScriptjs(App);

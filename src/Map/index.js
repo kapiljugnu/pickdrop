@@ -25,4 +25,4 @@ export class Container extends React.Component {
     }
 }
 
-export default withScriptjs(withGoogleMap(Container));
+export default withGoogleMap(Container)

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withScriptjs } from 'react-google-maps';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import './Input.css';
 
@@ -58,4 +57,4 @@ class Input extends React.Component {
     }
 }
 
-export default withScriptjs(Input);
+export default Input;

@@ -24,18 +24,17 @@ class Direction extends React.Component {
 
     getDirections() {
         const getCoordinates = (path) => new google.maps.LatLng(Number(path[0]), Number(path[1]))
-        const DirectionsService = new google.maps.DirectionsService();
-        const start = this.props.path[0];
-        const end = this.props.path[1];
+        const { DirectionsService, TravelMode, DirectionsStatus } = google.maps;
+        const directionsService = new DirectionsService();
         const waypoints = this.props.path.slice(1, -1).map((current) =>
             ({ location: getCoordinates(current) }));
-        DirectionsService.route({
-            origin: getCoordinates(start),
-            destination: getCoordinates(end),
+        directionsService.route({
+            origin: getCoordinates(this.props.path[0]),
+            destination: getCoordinates(this.props.path[1]),
             waypoints,
-            travelMode: google.maps.TravelMode.DRIVING,
+            travelMode: TravelMode.DRIVING,
         }, (result, status) => {
-            if (status === google.maps.DirectionsStatus.OK) {
+            if (status === DirectionsStatus.OK) {
                 this.setState({
                     directions: result,
                 });

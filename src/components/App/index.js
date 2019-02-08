@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import { withScriptjs } from 'react-google-maps';
 import Map from '../Map';
-import LocationInput from '../Location/Input';
+import Location from '../Location';
 import './index.css';
-import { getPath } from '../Api/action';
+import getPath from '../../services/getPath';
 import Direction from '../Map/Direction';
-import { SERVER_ERROR, INPUT_ERROR } from '../constants/messages';
+import { SERVER_ERROR, INPUT_ERROR } from '../../constants/messages';
 
 export class App extends Component {
 
-  state = { path: [], hasError: false, message: '' }
+  state = { path: [], hasError: false, message: '', isFetching: false }
 
   onLocationSubmit = (pick, drop) => {
-    this.setState({ hasError: false, message: '' })
-    if (pick && drop) {
-      getPath({ pick, drop })
-        .then(({ data: { path = [] } }) => this.setState({ path }))
-        .catch((error) => { this.setState({ hasError: true, message: SERVER_ERROR }) });
-    } else {
-      this.setState({ hasError: true, message: INPUT_ERROR })
+    if (!pick || !drop) {
+      this.setState({ hasError: true, message: INPUT_ERROR, isFetching: false });
+      return;
     }
+    this.setState({ hasError: false, message: '', isFetching: true })
+    getPath({ pick, drop })
+      .then(({ data: { path = [] } }) => this.setState({ path }))
+      .catch((error) => { this.setState({ hasError: true, message: SERVER_ERROR }) })
+      .finally(() => { this.setState({ isFetching: false }) })
   }
 
   onReset = () => {
@@ -32,7 +33,8 @@ export class App extends Component {
         {
           ({ directions, distance, duration }) => <div className="container">
             <div className="form">
-              <LocationInput distance={distance.toString()} duration={duration.toString()} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
+              <Location distance={distance.toString()} duration={duration.toString()} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
+              {this.state.isFetching && <div className="loader" />}
               {this.state.hasError && <div className="error">{this.state.message}</div>}
             </div>
             <Map

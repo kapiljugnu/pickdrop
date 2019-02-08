@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import renderer from 'react-test-renderer';
 import { mount } from 'enzyme';
-import Input from './Input';
+import Location from './index';
 
 jest.mock('react-dom');
 
@@ -16,22 +16,23 @@ describe('Input', () => {
     const LOCATION_DROP = 'location drop';
 
     it('should match the snapshot', () => {
-        const inputTree = renderer.create(<Input onSubmit={onSubmit} onReset={onReset} />).toJSON();
-        expect(inputTree).toMatchSnapshot();
+        const locationTee = renderer.create(<Location onSubmit={onSubmit} onReset={onReset} />).toJSON();
+        expect(locationTee).toMatchSnapshot();
     });
 
     it('onSubmit should be called with pick and drop location', () => {
-        const input = mount(<Input onSubmit={onSubmit} onReset={onReset} />)
+        const locationTree = mount(<Location onSubmit={onSubmit} onReset={onReset} />)
             .setState({ pickLocation: LOCATION_PICK, dropLocation: LOCATION_DROP });
-        input.find('form').find('input[type="submit"]').simulate('click');
+        locationTree.find('form').find('input[type="submit"]').simulate('click');
         expect(onSubmit).toHaveBeenCalledWith(LOCATION_PICK, LOCATION_DROP);
     });
 
     it('form should be reset on reset click', () => {
-        const input = mount(<Input onSubmit={onSubmit} onReset={onReset} />)
+        const locationTree = mount(<Location onSubmit={onSubmit} onReset={onReset} />)
             .setState({ pickLocation: LOCATION_PICK, dropLocation: LOCATION_DROP });
-        input.find('form').find('input[type="button"]').simulate('click');
-        expect(input.state().pickLocation).toBe('');
-        expect(input.state().dropLocation).toBe('');
+        locationTree.find('form').find('input[type="button"]').simulate('click');
+        expect(locationTree.state().pickLocation).toBe('');
+        expect(locationTree.state().dropLocation).toBe('');
+        expect(onReset).toHaveBeenCalled();
     });
 });

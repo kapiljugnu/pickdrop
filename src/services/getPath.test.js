@@ -1,4 +1,4 @@
-import { getPath } from './action';
+import getPath from './getPath';
 
 it('getPath()', async () => {
     const response = await getPath({ pick: 'location x', drop: 'location y' })

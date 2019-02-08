@@ -10,6 +10,12 @@ global.google = {
             setZoom() { }
         },
         places: { SearchBox: class { } },
-        event: { addListener: jest.fn(), removeListener: jest.fn() }
+        event: { addListener: jest.fn(), removeListener: jest.fn() },
+        DirectionsService: class {
+            route() { }
+        },
+        TravelMode: class { },
+        DirectionsStatus: {},
+        LatLng: class { }
     }
 };

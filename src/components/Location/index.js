@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
-import './Input.css';
+import './index.css';
 import Cross from './Cross';
 
 class Input extends React.Component {

@@ -44,13 +44,14 @@ class Input extends React.Component {
     onReset = () => {
         this.pickInputRef.current.value = '';
         this.dropInputRef.current.value = '';
-        this.setState({ pickLocation: '', dropLocation: '' }, ()=>{
+        this.setState({ pickLocation: '', dropLocation: '' }, () => {
             this.props.onReset();
         })
     }
 
     render() {
         const { distance, duration } = this.props;
+        const submitText = distance && duration ? 'Re-Submit' : 'Submit';
         return (
             <form>
                 <label htmlFor="pick">Starting Location</label>
@@ -76,7 +77,7 @@ class Input extends React.Component {
                 }
 
                 <br />
-                <input type="submit" onClick={this.onFormSubmit}></input>
+                <input type="submit" value={submitText} onClick={this.onFormSubmit}></input>
                 <input type="button" value="Reset" onClick={this.onReset}></input>
             </form>
         );

@@ -62,6 +62,7 @@ exports[`renders without crashing 1`] = `
               <input
                 onClick={[Function]}
                 type="submit"
+                value="Submit"
               />
               <input
                 onClick={[Function]}

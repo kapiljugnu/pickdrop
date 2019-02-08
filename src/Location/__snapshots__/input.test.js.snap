@@ -26,6 +26,7 @@ exports[`Input should match the snapshot 1`] = `
   <input
     onClick={[Function]}
     type="submit"
+    value="Submit"
   />
   <input
     onClick={[Function]}

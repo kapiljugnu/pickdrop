@@ -8,11 +8,12 @@ exports[`Input should match the snapshot 1`] = `
     Starting Location
   </label>
   <div
-    className="cross"
+    className="locationInput"
   >
     <input
       id="pick"
       placeholder="Starting Location"
+      required={true}
       type="text"
     />
     <i
@@ -36,11 +37,12 @@ exports[`Input should match the snapshot 1`] = `
     Drop-off point
   </label>
   <div
-    className="cross"
+    className="locationInput"
   >
     <input
       id="drop"
       placeholder="Drop-off point"
+      required={true}
       type="text"
     />
     <i

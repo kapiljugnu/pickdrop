@@ -23,7 +23,7 @@ export class App extends Component {
   }
 
   onReset = () => {
-    this.setState({ path: [] });
+    this.setState({ path: [], hasError: false, message: '' });
   }
 
   render() {

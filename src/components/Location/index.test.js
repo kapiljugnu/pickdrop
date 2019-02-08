@@ -35,4 +35,20 @@ describe('Input', () => {
         expect(locationTree.state().dropLocation).toBe('');
         expect(onReset).toHaveBeenCalled();
     });
+
+    it('pick location should be clean on cross button', () => {
+        const locationTree = mount(<Location onSubmit={onSubmit} onReset={onReset} />)
+            .setState({ pickLocation: LOCATION_PICK, dropLocation: LOCATION_DROP });
+        locationTree.find('form').find('#pick + i').simulate('click')
+        expect(locationTree.state().pickLocation).toBe('');
+        expect(locationTree.state().dropLocation).toBe(LOCATION_DROP);
+    });
+
+    it('drop location should be clean on cross button', () => {
+        const locationTree = mount(<Location onSubmit={onSubmit} onReset={onReset} />)
+            .setState({ pickLocation: LOCATION_PICK, dropLocation: LOCATION_DROP });
+        locationTree.find('form').find('#drop + i').simulate('click')
+        expect(locationTree.state().pickLocation).toBe(LOCATION_PICK);
+        expect(locationTree.state().dropLocation).toBe('');
+    });
 });

@@ -7,21 +7,57 @@ exports[`Input should match the snapshot 1`] = `
   >
     Starting Location
   </label>
-  <input
-    id="pick"
-    placeholder="Starting Location"
-    type="text"
-  />
+  <div
+    className="cross"
+  >
+    <input
+      id="pick"
+      placeholder="Starting Location"
+      type="text"
+    />
+    <i
+      onClick={[Function]}
+    >
+      <svg
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+        />
+      </svg>
+    </i>
+  </div>
   <label
     htmlFor="drop"
   >
     Drop-off point
   </label>
-  <input
-    id="drop"
-    placeholder="Drop-off point"
-    type="text"
-  />
+  <div
+    className="cross"
+  >
+    <input
+      id="drop"
+      placeholder="Drop-off point"
+      type="text"
+    />
+    <i
+      onClick={[Function]}
+    >
+      <svg
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+        />
+      </svg>
+    </i>
+  </div>
   <br />
   <input
     onClick={[Function]}

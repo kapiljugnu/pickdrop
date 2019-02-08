@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/StandaloneSearchBox';
 import './Input.css';
+import Cross from './Cross';
 
 class Input extends React.Component {
     pickSearchBoxRef = React.createRef();
@@ -28,17 +29,31 @@ class Input extends React.Component {
 
     onPickChange = () => {
         const input = this.pickSearchBoxRef.current.getPlaces()[0].formatted_address;
-        this.setState({ pickLocation: input });
+        if (input) {
+            this.setState({ pickLocation: input });
+        }
     }
 
     onDropChange = () => {
         const input = this.dropSearchBoxRef.current.getPlaces()[0].formatted_address;
-        this.setState({ dropLocation: input });
+        if (input) {
+            this.setState({ dropLocation: input });
+        }
     }
 
     onFormSubmit = (e) => {
         e.preventDefault();
         this.props.onSubmit(this.state.pickLocation, this.state.dropLocation);
+    }
+
+    onPickClean = () => {
+        this.pickInputRef.current.value = '';
+        this.setState({ pickLocation: '' });
+    }
+
+    onDropClean = () => {
+        this.dropInputRef.current.value = '';
+        this.setState({ dropLocation: '' });
     }
 
     onReset = () => {
@@ -56,11 +71,21 @@ class Input extends React.Component {
             <form>
                 <label htmlFor="pick">Starting Location</label>
                 <StandaloneSearchBox ref={this.pickSearchBoxRef} onPlacesChanged={this.onPickChange}>
-                    <input type="text" id="pick" ref={this.pickInputRef} placeholder="Starting Location"></input>
+                    <div className={this.state.pickLocation ? 'cross hasValue' : 'cross'}>
+                        <input type="text" id="pick" ref={this.pickInputRef} placeholder="Starting Location"></input>
+                        <i onClick={this.onPickClean}>
+                            <Cross />
+                        </i>
+                    </div>
                 </StandaloneSearchBox>
                 <label htmlFor="drop">Drop-off point</label>
                 <StandaloneSearchBox ref={this.dropSearchBoxRef} onPlacesChanged={this.onDropChange}>
-                    <input type="text" id="drop" ref={this.dropInputRef} placeholder="Drop-off point"></input>
+                    <div className={this.state.dropLocation ? 'cross hasValue' : 'cross'}>
+                        <input type="text" id="drop" ref={this.dropInputRef} placeholder="Drop-off point"></input>
+                        <i onClick={this.onDropClean}>
+                            <Cross />
+                        </i>
+                    </div>
                 </StandaloneSearchBox>
                 {
                     distance !== '' && duration !== '' &&

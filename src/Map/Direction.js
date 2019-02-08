@@ -38,7 +38,6 @@ class Direction extends React.Component {
             travelMode: TravelMode.DRIVING,
         }, (result, status) => {
             if (status === DirectionsStatus.OK) {
-                console.log(result.routes[0].legs)
                 const computed = result.routes[0].legs.reduce((total, current) => {
                     total.distance += current.distance.value;
                     total.duration += current.duration.value;

@@ -28,7 +28,7 @@ export class App extends Component {
         {
           ({ directions, distance, duration }) => <div className="container">
             <div className="form">
-              <LocationInput distance={distance} duration={duration} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
+              <LocationInput distance={distance.toString()} duration={duration.toString()} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
               {this.state.hasError && <div className="error">Error Occured while loading the data, please try again</div>}
             </div>
             <Map

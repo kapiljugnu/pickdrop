@@ -10,7 +10,7 @@ const Map = ({ directions }) => (<GoogleMap
 </GoogleMap>);
 
 Map.propTypes = {
-    directions: PropsTypes.array,
+    directions: PropsTypes.object,
 }
 
 export default withGoogleMap(Map)

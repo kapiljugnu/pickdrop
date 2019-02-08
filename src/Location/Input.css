@@ -42,6 +42,7 @@ form input[type="button"] {
 
 .locationInput input[type="text"] ~ i {
     display: none;
+    margin-left: 5px;
 }
 
 .locationInput.hasValue input[type="text"] ~ i{

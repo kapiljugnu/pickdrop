@@ -71,8 +71,8 @@ class Input extends React.Component {
             <form>
                 <label htmlFor="pick">Starting Location</label>
                 <StandaloneSearchBox ref={this.pickSearchBoxRef} onPlacesChanged={this.onPickChange}>
-                    <div className={this.state.pickLocation ? 'cross hasValue' : 'cross'}>
-                        <input type="text" id="pick" ref={this.pickInputRef} placeholder="Starting Location"></input>
+                    <div className={this.state.pickLocation ? 'locationInput hasValue' : 'locationInput'}>
+                        <input required type="text" id="pick" ref={this.pickInputRef} placeholder="Starting Location" />
                         <i onClick={this.onPickClean}>
                             <Cross />
                         </i>
@@ -80,8 +80,8 @@ class Input extends React.Component {
                 </StandaloneSearchBox>
                 <label htmlFor="drop">Drop-off point</label>
                 <StandaloneSearchBox ref={this.dropSearchBoxRef} onPlacesChanged={this.onDropChange}>
-                    <div className={this.state.dropLocation ? 'cross hasValue' : 'cross'}>
-                        <input type="text" id="drop" ref={this.dropInputRef} placeholder="Drop-off point"></input>
+                    <div className={this.state.dropLocation ? 'locationInput hasValue' : 'locationInput'}>
+                        <input required type="text" id="drop" ref={this.dropInputRef} placeholder="Drop-off point" />
                         <i onClick={this.onDropClean}>
                             <Cross />
                         </i>

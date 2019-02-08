@@ -34,17 +34,17 @@ form input[type="button"] {
     background-color: #555555;
 }
 
-.cross input[type="text"]{
+.locationInput input[type="text"]{
     display: inline-block;
     vertical-align: -webkit-baseline-middle;
 
 }
 
-.cross input[type="text"] ~ i {
+.locationInput input[type="text"] ~ i {
     display: none;
 }
 
-.cross.hasValue input[type="text"] ~ i{
+.locationInput.hasValue input[type="text"] ~ i{
     display: inline;
 }
 

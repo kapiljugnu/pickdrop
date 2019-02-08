@@ -4,30 +4,41 @@ import Map from '../Map';
 import LocationInput from '../Location/Input';
 import './index.css';
 import { getPath } from '../Api/action';
+import Direction from '../Map/Direction';
 
 export class App extends Component {
 
-  state = { path: [] }
+  state = { path: [], hasError: false }
 
   onLocationSubmit = (pick, drop) => {
     if (pick && drop) {
-      getPath({ pick, drop }).then(({ data: { path = [] } }) => this.setState({ path }));
+      getPath({ pick, drop })
+        .then(({ data: { path = [] } }) => this.setState({ path }))
+        .catch((error) => { this.setState({ hasError: true }) });
     }
+  }
+
+  onReset = () => {
+    this.setState({ path: [] });
   }
 
   render() {
     return (
-      <div className="container">
-        <div className="form">
-          <LocationInput
-            onSubmit={this.onLocationSubmit} />
-        </div>
-        <Map
-          path={this.state.path}
-          containerElement={<div className="map" />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
+      <Direction path={this.state.path}>
+        {
+          ({ directions, distance, duration }) => <div className="container">
+            <div className="form">
+              <LocationInput distance={distance} duration={duration} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
+              {this.state.hasError && <div className="error">Error Occured while loading the data, please try again</div>}
+            </div>
+            <Map
+              directions={directions}
+              containerElement={<div className="map" />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
+          </div>
+        }
+      </Direction>
     );
   }
 }

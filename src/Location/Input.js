@@ -11,7 +11,15 @@ class Input extends React.Component {
 
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
+        onReset: PropTypes.func.isRequired,
+        distance: PropTypes.string,
+        duration: PropTypes.string,
     };
+
+    static defaultProps = {
+        distance: '',
+        duration: '',
+    }
 
     state = {
         pickLocation: '',
@@ -36,20 +44,38 @@ class Input extends React.Component {
     onReset = () => {
         this.pickInputRef.current.value = '';
         this.dropInputRef.current.value = '';
-        this.setState({ pickLocation: '', dropLocation: '' })
+        this.setState({ pickLocation: '', dropLocation: '' }, ()=>{
+            this.props.onReset();
+        })
     }
 
     render() {
+        const { distance, duration } = this.props;
         return (
             <form>
-                <label htmlFor="pick">Pickup Location</label>
+                <label htmlFor="pick">Starting Location</label>
                 <StandaloneSearchBox ref={this.pickSearchBoxRef} onPlacesChanged={this.onPickChange}>
-                    <input type="text" id="pick" ref={this.pickInputRef} placeholder="Pickup Location"></input>
+                    <input type="text" id="pick" ref={this.pickInputRef} placeholder="Starting Location"></input>
                 </StandaloneSearchBox>
-                <label htmlFor="drop">Where to?</label>
+                <label htmlFor="drop">Drop-off point</label>
                 <StandaloneSearchBox ref={this.dropSearchBoxRef} onPlacesChanged={this.onDropChange}>
-                    <input type="text" id="drop" ref={this.dropInputRef} placeholder="Where to?"></input>
+                    <input type="text" id="drop" ref={this.dropInputRef} placeholder="Drop-off point"></input>
                 </StandaloneSearchBox>
+                {
+                    distance !== '' && duration !== '' &&
+                    (<React.Fragment>
+                        <label>
+                            <span>total distance:</span>
+                            {distance}
+                        </label>
+                        <label>
+                            <span>total time:</span>
+                            {duration}
+                        </label>
+                    </React.Fragment>)
+                }
+
+                <br />
                 <input type="submit" onClick={this.onFormSubmit}></input>
                 <input type="button" value="Reset" onClick={this.onReset}></input>
             </form>

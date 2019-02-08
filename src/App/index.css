@@ -18,3 +18,8 @@
     position: relative;
     min-height: 100%;
 }
+
+.error {
+    color: red;
+    margin: 12px 0;
+}

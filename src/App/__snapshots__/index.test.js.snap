@@ -14,87 +14,95 @@ exports[`renders without crashing 1`] = `
   }
 >
   <App>
-    <div
-      className="container"
+    <Direction
+      path={Array []}
     >
       <div
-        className="form"
-      >
-        <Input
-          onSubmit={[Function]}
-        >
-          <form>
-            <label
-              htmlFor="pick"
-            >
-              Pickup Location
-            </label>
-            <StandaloneSearchBox
-              onPlacesChanged={[Function]}
-            >
-              <input
-                id="pick"
-                placeholder="Pickup Location"
-                type="text"
-              />
-            </StandaloneSearchBox>
-            <label
-              htmlFor="drop"
-            >
-              Where to?
-            </label>
-            <StandaloneSearchBox
-              onPlacesChanged={[Function]}
-            >
-              <input
-                id="drop"
-                placeholder="Where to?"
-                type="text"
-              />
-            </StandaloneSearchBox>
-            <input
-              onClick={[Function]}
-              type="submit"
-            />
-            <input
-              onClick={[Function]}
-              type="button"
-              value="Reset"
-            />
-          </form>
-        </Input>
-      </div>
-      <withGoogleMap(Container)
-        containerElement={
-          <div
-            className="map"
-          />
-        }
-        mapElement={
-          <div
-            style={
-              Object {
-                "height": "100%",
-              }
-            }
-          />
-        }
-        path={Array []}
+        className="container"
       >
         <div
-          className="map"
+          className="form"
+        >
+          <Input
+            distance=""
+            duration=""
+            onReset={[Function]}
+            onSubmit={[Function]}
+          >
+            <form>
+              <label
+                htmlFor="pick"
+              >
+                Starting Location
+              </label>
+              <StandaloneSearchBox
+                onPlacesChanged={[Function]}
+              >
+                <input
+                  id="pick"
+                  placeholder="Starting Location"
+                  type="text"
+                />
+              </StandaloneSearchBox>
+              <label
+                htmlFor="drop"
+              >
+                Drop-off point
+              </label>
+              <StandaloneSearchBox
+                onPlacesChanged={[Function]}
+              >
+                <input
+                  id="drop"
+                  placeholder="Drop-off point"
+                  type="text"
+                />
+              </StandaloneSearchBox>
+              <br />
+              <input
+                onClick={[Function]}
+                type="submit"
+              />
+              <input
+                onClick={[Function]}
+                type="button"
+                value="Reset"
+              />
+            </form>
+          </Input>
+        </div>
+        <withGoogleMap(Map)
+          containerElement={
+            <div
+              className="map"
+            />
+          }
+          directions={null}
+          mapElement={
+            <div
+              style={
+                Object {
+                  "height": "100%",
+                }
+              }
+            />
+          }
         >
           <div
-            style={
-              Object {
-                "height": "100%",
+            className="map"
+          >
+            <div
+              style={
+                Object {
+                  "height": "100%",
+                }
               }
-            }
-          />
-          <div />
-        </div>
-      </withGoogleMap(Container)>
-    </div>
+            />
+            <div />
+          </div>
+        </withGoogleMap(Map)>
+      </div>
+    </Direction>
   </App>
 </withScriptjs(App)>
 `;

@@ -5,23 +5,24 @@ exports[`Input should match the snapshot 1`] = `
   <label
     htmlFor="pick"
   >
-    Pickup Location
+    Starting Location
   </label>
   <input
     id="pick"
-    placeholder="Pickup Location"
+    placeholder="Starting Location"
     type="text"
   />
   <label
     htmlFor="drop"
   >
-    Where to?
+    Drop-off point
   </label>
   <input
     id="drop"
-    placeholder="Where to?"
+    placeholder="Drop-off point"
     type="text"
   />
+  <br />
   <input
     onClick={[Function]}
     type="submit"

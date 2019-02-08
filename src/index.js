@@ -7,4 +7,5 @@ const googleMapUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.
 
 ReactDOM.render(<App
     googleMapURL={googleMapUrl}
-    loadingElement={<div style={{ height: `100%` }} />} />, document.getElementById('root'));
+    loadingElement={<div className="loader" />}
+/>, document.getElementById('root'));

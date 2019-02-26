@@ -1,52 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { withScriptjs } from 'react-google-maps';
 import Map from '../Map';
 import Location from '../Location';
 import './index.css';
 import getPath from '../../services/getPath';
-import Direction from '../Map/Direction';
+import { useDirections } from '../Map/Direction';
 import { SERVER_ERROR, INPUT_ERROR } from '../../constants/messages';
 
-export class App extends Component {
 
-  state = { path: [], hasError: false, message: '', isFetching: false }
+const App = () => {
+  const [paths, setPaths] = useState([]);
+  const [message, setMessage] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
+  const { directions, distance, duration } = useDirections(paths);
 
-  onLocationSubmit = (pick, drop) => {
+  function onLocationSubmit(pick, drop) {
     if (!pick || !drop) {
-      this.setState({ hasError: true, message: INPUT_ERROR, isFetching: false });
+      setPaths([]);
+      setMessage(INPUT_ERROR);
+      setIsFetching(false);
       return;
     }
-    this.setState({ hasError: false, message: '', isFetching: true })
+    setPaths([]);
+    setMessage('');
+    setIsFetching(true);
     getPath({ pick, drop })
-      .then(({ data: { path = [] } }) => this.setState({ path }))
-      .catch((error) => { this.setState({ hasError: true, message: SERVER_ERROR }) })
-      .finally(() => { this.setState({ isFetching: false }) })
+      .then(({ data: { path = [] } }) => {
+        setPaths(path)
+      })
+      .catch((error) => {
+        setMessage(SERVER_ERROR);
+      })
+      .finally(() => { setIsFetching(false) })
   }
 
-  onReset = () => {
-    this.setState({ path: [], hasError: false, message: '' });
+  function onReset() {
+    setPaths([]);
+    setMessage('');
+    setIsFetching(false);
   }
 
-  render() {
-    return (
-      <Direction path={this.state.path}>
-        {
-          ({ directions, distance, duration }) => <div className="container">
-            <div className="form">
-              <Location distance={distance.toString()} duration={duration.toString()} onSubmit={this.onLocationSubmit} onReset={this.onReset} />
-              {this.state.isFetching && <div className="loader" />}
-              {this.state.hasError && <div className="error">{this.state.message}</div>}
-            </div>
-            <Map
-              directions={directions}
-              containerElement={<div className="map" />}
-              mapElement={<div style={{ height: `100%` }} />}
-            />
-          </div>
-        }
-      </Direction>
-    );
-  }
+  return (
+    <div className="container">
+      <div className="form">
+        <Location distance={distance.toString()} duration={duration.toString()} onSubmit={onLocationSubmit} onReset={onReset} />
+        {isFetching && <div className="loader" />}
+        {message && <div className="error">{message}</div>}
+      </div>
+      <Map
+        directions={directions}
+        containerElement={<div className="map" />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+    </div>)
 }
 
 export default withScriptjs(App);

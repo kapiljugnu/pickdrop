@@ -4,7 +4,7 @@ import { StandaloneSearchBox } from 'react-google-maps/lib/components/places/Sta
 import './index.css';
 import Cross from './Cross';
 
-class Input extends React.Component {
+class Location extends React.Component {
     pickSearchBoxRef = React.createRef();
     dropSearchBoxRef = React.createRef();
     pickInputRef = React.createRef();
@@ -109,4 +109,4 @@ class Input extends React.Component {
     }
 }
 
-export default Input;
+export default Location;
